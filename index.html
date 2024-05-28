@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Rock Paper Scissors</title>
+<style>
+body {
+  background-color: #98ccff;
+  color: white;
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #91c8ff, #9e9eed, #000000);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  z-index: -1;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.score {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.score-box {
+  background-color: #000000;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.choice-buttons {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.choice-button {
+  background-color: #fff;
+  border: 5px solid #ffd700;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 20px;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.choice-button img {
+  width: 60px;
+  height: 60px;
+}
+
+.choice-button:hover {
+  background-color: #ffd700;
+  transform: scale(1.1);
+}
+
+.result {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.button {
+  background-color: #4285f4;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.button:hover {
+  background-color: #357ae8;
+  transform: scale(1.1);
+}
+
+.rules-box {
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+  margin-top: 20px;
+}
+
+.rules-button {
+  background-color: #283038;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.rules-button:hover {
+  background-color: #3a464f;
+  transform: scale(1.1);
+}
+body {
+    margin: auto;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow: auto;
+    background: linear-gradient(315deg, rgba(101,0,94,1) 3%, rgba(60,132,206,1) 38%, rgba(48,238,226,1) 68%, rgba(255,25,25,1) 98%);
+    animation: gradient 15s ease infinite;
+    background-size: 400% 400%;
+    background-attachment: fixed;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
+.wave {
+    background: rgba(60, 0, 255, 0.374);
+    border-radius: 1000% 1000% 0 0;
+    position: fixed;
+    width: 200%;
+    height: 12em;
+    animation: wave 10s -3s linear infinite;
+    transform: translate3d(0, 0, 0);
+    opacity: 0.8;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.wave:nth-of-type(2) {
+    bottom: -1.25em;
+    animation: wave 18s linear reverse infinite;
+    opacity: 0.8;
+}
+
+.wave:nth-of-type(3) {
+    bottom: -2.5em;
+    animation: wave 20s -1s reverse infinite;
+    opacity: 0.9;
+}
+
+@keyframes wave {
+    2% {
+        transform: translateX(1);
+    }
+
+    25% {
+        transform: translateX(-25%);
+    }
+
+    50% {
+        transform: translateX(-50%);
+    }
+
+    75% {
+        transform: translateX(-25%);
+    }
+
+    100% {
+        transform: translateX(1);
+    }
+}
+</style>
+</head>
+<body>
+    <body>
+        <div>
+           <div class="wave"></div>
+           <div class="wave"></div>
+           <div class="wave"></div>
+        </div>
+      </body>
+  <div class="container">
+    <h1>ROCK PAPER SCISSORS</h1>
+    <div class="score">
+      <div class="score-box">
+        <p>PLAYER</p>
+        <p id="player-score">0</p>
+      </div>
+      <div class="score-box">
+        <p>COMPUTER</p>
+        <p id="computer-score">0</p>
+      </div>
+    </div>
+    <div class="choice-buttons">
+      <button class="choice-button" data-choice="rock">
+        <img src="fist.png" alt="Rock">
+      </button>
+      <button class="choice-button" data-choice="paper">
+        <img src="hand-paper (1).png" alt="Paper">
+      </button>
+      <button class="choice-button" data-choice="scissors">
+        <img src="scissors.png" alt="Scissors">
+      </button>
+    </div>
+    <div class="result" id="result"></div>
+    <button class="button" id="play-again">PLAY AGAIN</button>
+    <div class="rules-box">
+      <button class="rules-button" id="rules-button">RULES</button>
+      <button class="rules-button" id="reset-score-button">RESET SCORE</button>
+    </div>
+  </div>
+
+  <script>
+    const result = document.getElementById('result');
+    const playerScore = document.getElementById('player-score');
+    const computerScore = document.getElementById('computer-score');
+    const playAgainButton = document.getElementById('play-again');
+    const rulesButton = document.getElementById('rules-button');
+    const resetScoreButton = document.getElementById('reset-score-button');
+
+    let playerScoreCount = 0;
+    let computerScoreCount = 0;
+
+    const choices = [
+      { name: 'rock', image: 'images/rock.png' },
+      { name: 'paper', image: 'images/paper.png' },
+      { name: 'scissors', image: 'images/scissors.png' }
+    ];
+
+    const gameRules = {
+      rock: ['scissors'],
+      paper: ['rock'],
+      scissors: ['paper']
+    };
+
+    function getComputerChoice() {
+      const randomIndex = Math.floor(Math.random() * choices.length);
+      return choices[randomIndex];
+    }
+
+    function updateScore(winner) {
+      if (winner === 'player') {
+        playerScoreCount++;
+        playerScore.textContent = playerScoreCount;
+      } else if (winner === 'computer') {
+        computerScoreCount++;
+        computerScore.textContent = computerScoreCount;
+      }
+    }
+
+    function playRound(playerSelection, computerSelection) {
+      const winner = determineWinner(playerSelection, computerSelection);
+      updateScore(winner);
+
+      result.textContent = `You chose ${playerSelection.name}, computer chose ${computerSelection.name}. ${winner === 'player' ? 'You win!' : winner === 'computer' ? 'Computer wins!' : 'It\'s a tie!' }`;
+    }
+
+    function determineWinner(playerSelection, computerSelection) {
+      if (playerSelection.name === computerSelection.name) {
+        return 'tie';
+      }
+
+      if (gameRules[playerSelection.name].includes(computerSelection.name)) {
+        return 'player';
+      } else {
+        return 'computer';
+      }
+    }
+
+    function resetGame() {
+      playerScoreCount = 0;
+      computerScoreCount = 0;
+      playerScore.textContent = playerScoreCount;
+      computerScore.textContent = computerScoreCount;
+      result.textContent = '';
+    }
+
+    document.querySelectorAll('.choice-button').forEach(button => {
+      button.addEventListener('click', () => {
+        const playerSelection = choices.find(choice => choice.name === button.dataset.choice);
+        const computerSelection = getComputerChoice();
+        playRound(playerSelection, computerSelection);
+      });
+    });
+
+    playAgainButton.addEventListener('click', () => {
+      resetGame();
+      result.textContent = '';
+    });
+
+    rulesButton.addEventListener('click', () => {
+      alert('The rules are: \n\n' +
+        'Rock crushes Scissors\n' +
+        'Scissors cuts Paper\n' +
+        'Paper covers Rock\n\n' +
+        'The first to reach 3 points wins!');
+    });
+
+    resetScoreButton.addEventListener('click', () => {
+      resetGame();
+      result.textContent = 'Score reset!';
+    });
+  </script>
+</body>
+</html>
